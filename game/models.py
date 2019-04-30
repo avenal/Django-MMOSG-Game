@@ -55,9 +55,20 @@ class Village(models.Model):
             village_population = VillageResource(resource = population, quantity=village_farm.bonus, village=self)
             village_population.save()
 
+            
 
         else:
-            pass
+            return super(Village, self).save(*args, **kwargs)
+
+    def get_buildings(self):
+        return VillageBuilding.objects.filter(village=self)
+
+    def get_resources(self):
+        return VillageResource.objects.filter(village=self)
+
+    def get_army(self):
+        return VillageArmy.objects.filter(village=self)
+
 
 class BuildingType(models.Model):
     id = models.AutoField(primary_key = True)
@@ -93,10 +104,13 @@ class Unit(models.Model):
     time_to_recruit = models.FloatField()
     speed = models.IntegerField()
     attack = models.IntegerField()
-    deffence = models.IntegerField()
+    defence = models.IntegerField()
     loot = models.IntegerField()
     def __str__(self):
         return str(self.name)
+
+    def get_base_cost(self):
+        return ResourceUnitCost.objects.filter(unit=self)
 
 class ResourceCost(models.Model):
     id = models.AutoField(primary_key = True)
@@ -127,6 +141,7 @@ class VillageArmy(models.Model):
     def __str__(self):
         return str(self.quantity)+ " " + str(self.unit) + " " + str(self.village)
 
+
 class Research(models.Model):
     id = models.AutoField(primary_key = True)
     name = models.CharField(max_length=25)
@@ -148,3 +163,6 @@ class VillageBuilding(models.Model):
     village = models.ForeignKey(Village, models.DO_NOTHING)
     def __str__(self):
         return str(self.building) +" "+ str(self.lvl) +" "+ str(self.village)
+
+    def get_base_cost(self):
+        return ResourceBuildingCost.objects.filter(building=self.building)
