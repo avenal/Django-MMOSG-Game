@@ -19,7 +19,15 @@ class Village(models.Model):
             sawmill = Building.objects.get(name="Sawmill")
             quarry = Building.objects.get(name="Quarry")
             iron_mine = Building.objects.get(name="IronMine")
+            warehouse = Building.objects.get(name="Warehouse")
+            farm = Building.objects.get(name="Farm")
+
+            wood = Resource.objects.get(name="Wood")
+            stone = Resource.objects.get(name="Stone")
+            iron = Resource.objects.get(name="Iron")
+            population = Resource.objects.get(name="Population")
             
+
             village_palace = VillageBuilding(lvl=1, bonus=3, building=palace, village=self)
             village_palace.save()
 
@@ -31,6 +39,22 @@ class Village(models.Model):
 
             village_iron_mine = VillageBuilding(lvl=1, bonus=120, building=iron_mine, village=self)
             village_iron_mine.save()
+            
+            village_warehouse = VillageBuilding(lvl=1, bonus=4000, building=warehouse, village=self)
+            village_warehouse.save()
+            
+            village_farm = VillageBuilding(lvl=1, bonus=200, building=farm, village=self)
+            village_farm.save()
+
+            village_wood = VillageResource(resource = wood, quantity=100, village=self)
+            village_wood.save()
+            village_stone = VillageResource(resource = stone, quantity=100, village=self)
+            village_stone.save()
+            village_iron = VillageResource(resource = iron, quantity=100, village=self)
+            village_iron.save()
+            village_population = VillageResource(resource = population, quantity=village_farm.bonus, village=self)
+            village_population.save()
+
 
         else:
             pass
