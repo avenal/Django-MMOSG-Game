@@ -1,0 +1,21 @@
+  <nav>
+    <div class="nav-wrapper amber darken-3">
+      <a href="#" class="brand-logo">Game</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="">Sign In</a></li>
+        <li><a href="">Sign Up</a></li>
+      </ul>
+    </div>
+  </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="">Sign In</a></li>
+        <li><a href="">Sign Up</a></li>
+    </ul>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
+  });
+  </script>
