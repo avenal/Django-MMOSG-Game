@@ -1,5 +1,11 @@
 from django.db import models
-
+"""
+after user register, create user's village and all buildings with lvl 0 (or 1 for really basic buildings).
+If building has its own requirements, write them in upgrade view, if requirements are satisfied let user upgrade building.
+If building is lvl 0 user cannot access building functionalities. (write function for that maybe?)
+If user wants to upgrade building, the cost is base cost to the power of actual level + 1 
+functions to write: returning building's upgrade cost 
+"""
 class Village(models.Model):
     id = models.AutoField(primary_key = True)
     name = models.CharField(max_length = 30)
@@ -83,6 +89,13 @@ class Building(models.Model):
     def __str__(self):
         return str(self.name)
 
+class BuildingRequirements(models.Model):
+    id = models.AutoField(primary_key = True)
+    building = models.ForeignKey('Building', models.DO_NOTHING, related_name='building')
+    required_building = models.ForeignKey('Building', models.DO_NOTHING, related_name='required_building')
+    required_lvl = models.IntegerField()
+    def __str__(self):
+        return str(self.required_building)+" "+str(self.required_lvl)+" lvl"
 
 class Resource(models.Model):
     id = models.AutoField(primary_key = True)
