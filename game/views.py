@@ -11,7 +11,7 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             messages.success(request, 'You are now logged in')
-            return redirect('login')
+            return redirect('dashboard')
         else:
             messages.error(request, 'Invalid credentials')
             return redirect('login')
@@ -47,3 +47,12 @@ def register(request):
     else:    
         return render(request, 'game/register.html')
     
+
+def logout(request):
+   if request.method == 'POST':
+      auth.logout(request)
+      messages.success(request, 'You are now logged out')
+      return redirect('login')
+
+def dashboard(request):
+    return render(request, 'game/dashboard.html')

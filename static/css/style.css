@@ -1,16 +1,16 @@
 
   /* label color */
   .input-field label {
-    color: rgb(143, 90, 168);
+    color: rgb(75, 70, 56);
   }
   /* label focus color */
-  .input-field input[type=text]:focus + label {
-    color: rgb(255, 19, 19);
+  .input-field input:focus + label {
+    color: rgb(255, 174, 0) !important;
   }
   /* label underline focus color */
-  .input-field input[type=text]:focus {
-    border-bottom: 1px solid rgb(53, 18, 148);
-    box-shadow: 0 1px 0 0 #000;
+  .input-field input:focus {
+    border-bottom: 1px solid rgb(255, 178, 36) !important; 
+    box-shadow: 0 1px 0 0 rgb(255, 202, 105) !important;
   }
   /* valid color */
   .input-field input[type=text].valid {
@@ -22,8 +22,7 @@
     border-bottom: 1px solid #000;
     box-shadow: 0 1px 0 0 #000;
   }
-  /* icon prefix focus color */
-  .input-field .prefix.active {
-    color: rgb(20, 12, 133);
-  }
-       
+
+.col.s8 > .btn {
+    width: 100%;
+}
